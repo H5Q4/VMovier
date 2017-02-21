@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_splash"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.github.jupittar.vmovier.ui.splash.SplashActivity">
+
+  <!--<ImageView-->
+      <!--android:id="@+id/iv_bg"-->
+      <!--android:layout_width="match_parent"-->
+      <!--android:layout_height="match_parent"-->
+      <!--android:scaleType="centerCrop"-->
+      <!--android:src="@drawable/splash_background"/>-->
+
+  <ImageView
+      android:id="@+id/iv_logo"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_centerHorizontal="true"
+      android:layout_alignParentTop="true"
+      android:layout_marginTop="42dp"
+      android:src="@drawable/loading_logo"/>
+
+  <TextView
+      android:id="@+id/tv_slogan"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_centerHorizontal="true"
+      android:layout_alignParentBottom="true"
+      android:layout_marginBottom="42dp"
+      android:text="感悟人生只需一刻钟"
+      android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+      android:textColor="@android:color/white"/>
+
+</RelativeLayout>

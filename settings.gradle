@@ -1,0 +1,3 @@
+include ':vm-mobile', ':android-common', ':vm-core'
+project(':vm-mobile').projectDir = new File('app')
+project(':vm-core').projectDir = new File('core')

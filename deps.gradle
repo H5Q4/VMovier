@@ -1,0 +1,86 @@
+ext {
+
+  minSdkVersion = 19
+  compileSdkVersion = 25
+  buildToolsVersion = "25.0.2"
+
+  //libraries versions
+  libVersions = [
+      androidSupport               : '25.1.1',
+      baseRecyclerViewAdapterHelper: '2.8.0',
+      butterknife                  : '8.4.0',
+      dagger                       : '2.8',
+      glide                        : '3.7.0',
+      gson                         : '2.8.0',
+      leakcanary                   : '1.5',
+      logger                       : '1.13',
+      okhttp3                      : '3.5.0',
+      retrofit2                    : '2.1.0',
+      rxjava                       : '1.2.4',
+      rxandroid                    : '1.2.1',
+      stetho                       : '1.4.2',
+
+      // Testing
+      junit                        : '4.12',
+      espresso                     : '2.2.2',
+      mockito                      : '1.10.19',
+      robolectric                  : '3.1.1'
+  ]
+
+  testLibraries = [
+      junit          : "junit:junit:${libVersions.junit}",
+      mockito        : "org.mockito:mockito-core:${libVersions.mockito}",
+      robolectric    : "org.robolectric:robolectric:${libVersions.robolectric}",
+      espresso       : "com.android.support.test.espresso:espresso-core:${libVersions.espresso}",
+      espressoContrib: "com.android.support.test.espresso:espresso-contrib:${libVersions.espresso}",
+  ]
+
+  //libraries dependencies
+  libBumptech = [
+      glide: "com.github.bumptech.glide:glide:${libVersions.glide}",
+  ]
+  libCymChad = [
+      baseRecyclerViewAdapterHelper: "com.github.CymChad:BaseRecyclerViewAdapterHelper:${libVersions.baseRecyclerViewAdapterHelper}",
+  ]
+  libFacebook = [
+      stetho        : "com.facebook.stetho:stetho:${libVersions.stetho}",
+      stetho4Okhttp3: "com.facebook.stetho:stetho-okhttp3:${libVersions.stetho}",
+  ]
+  libGoogle = [
+      //android supporti
+      supportV4     : "com.android.support:support-v4:${libVersions.androidSupport}",
+      appCompat     : "com.android.support:appcompat-v7:${libVersions.androidSupport}",
+      annotations   : "com.android.support:support-annotations:${libVersions.androidSupport}",
+      cardView      : "com.android.support:cardview-v7:${libVersions.androidSupport}",
+      design        : "com.android.support:design:${libVersions.androidSupport}",
+      gridlayout    : "com.android.support:gridlayout-v7:${libVersions.androidSupport}",
+      palette       : "'com.android.support:palette-v7:${libVersions.androidSupport}",
+      recyclerView  : "com.android.support:recyclerview-v7:${libVersions.androidSupport}",
+
+      gson          : "com.google.code.gson:gson:${libVersions.gson}",
+      dagger        : "com.google.dagger:dagger:${libVersions.dagger}",
+      daggerCompiler: "com.google.dagger:dagger-compiler:${libVersions.dagger}",
+  ]
+  libJakewharton = [
+      butterknife        : "com.jakewharton:butterknife:${libVersions.butterknife}",
+      butterknifeCompiler: "com.jakewharton:butterknife-compiler:${libVersions.butterknife}",
+  ]
+  libOrhanobut = [
+      logger: "com.orhanobut:logger:${libVersions.logger}",
+  ]
+  libReactiveX = [
+      rxjava   : "io.reactivex:rxjava:${libVersions.rxjava}",
+      rxandroid: "io.reactivex:rxandroid:${libVersions.rxandroid}",
+  ]
+  libSquareup = [
+      okhttp3                  : "com.squareup.okhttp3:okhttp:${libVersions.okhttp3}",
+      okhttp3LoggingInterceptor: "com.squareup.okhttp3:logging-interceptor:${libVersions.okhttp3}",
+
+      retrofit2                : "com.squareup.retrofit2:retrofit:${libVersions.retrofit2}",
+      gsonConverter4Retrofit2  : "com.squareup.retrofit2:converter-gson:${libVersions.retrofit2}",
+      rxjavaAdapter4Retrofit2  : "com.squareup.retrofit2:adapter-rxjava:${libVersions.retrofit2}",
+
+      leakcanary               : "com.squareup.leakcanary:leakcanary-android:${libVersions.leakcanary}",
+      leakcanaryNoOp           : "com.squareup.leakcanary:leakcanary-android-no-op:${libVersions.leakcanary}",
+  ]
+}

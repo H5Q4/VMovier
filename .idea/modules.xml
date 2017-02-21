@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/VMovier.iml" filepath="$PROJECT_DIR$/VMovier.iml" />
+      <module fileurl="file://$PROJECT_DIR$/android-common/android-common.iml" filepath="$PROJECT_DIR$/android-common/android-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/core/vm-core.iml" filepath="$PROJECT_DIR$/core/vm-core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/vm-mobile.iml" filepath="$PROJECT_DIR$/app/vm-mobile.iml" />
+    </modules>
+  </component>
+</project>

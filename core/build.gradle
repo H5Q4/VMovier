@@ -1,0 +1,45 @@
+apply plugin: 'java'
+apply plugin: 'me.tatarka.retrolambda'
+
+configurations {
+  annotationProcessor
+}
+
+def generatedSources = "$buildDir/dagger2/generated/src/main/java"
+def generatedOutputDir = file("$generatedSources")
+
+compileJava {
+  doFirst {
+    generatedOutputDir.exists() || generatedOutputDir.mkdirs()
+    options.compilerArgs = [
+        '-s', "${generatedSources}"
+    ]
+  }
+}
+compileJava.dependsOn clean
+
+sourceSets {
+  main {
+    compileClasspath += configurations.annotationProcessor
+    java {
+      srcDirs += generatedOutputDir
+    }
+  }
+}
+
+dependencies {
+  compile fileTree(dir: 'libs', include: ['*.jar'])
+
+  compile rootProject.ext.libReactiveX.rxjava
+
+  compile rootProject.ext.libSquareup.okhttp3
+
+  compile rootProject.ext.libSquareup.retrofit2
+  compile rootProject.ext.libSquareup.rxjavaAdapter4Retrofit2
+  compile rootProject.ext.libSquareup.gsonConverter4Retrofit2
+
+  compile rootProject.ext.libGoogle.gson
+  compile rootProject.ext.libGoogle.dagger
+  annotationProcessor rootProject.ext.libGoogle.daggerCompiler
+}
+
