@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'me.tatarka.retrolambda'
 
 android {
   compileSdkVersion rootProject.ext.compileSdkVersion
@@ -21,10 +22,10 @@ android {
   configurations.all {
     resolutionStrategy {
       force rootProject.ext.libGoogle.annotations
-      force rootProject.ext.libGoogle.supportV4
-      force rootProject.ext.libGoogle.appCompat
-      force rootProject.ext.libGoogle.design
-      force rootProject.ext.libGoogle.recyclerView
+//      force rootProject.ext.libGoogle.supportV4
+//      force rootProject.ext.libGoogle.appCompat
+//      force rootProject.ext.libGoogle.design
+//      force rootProject.ext.libGoogle.recyclerView
     }
   }
 }
@@ -36,6 +37,7 @@ dependencies {
   compile project(':vm-core')
 
   testCompile rootProject.ext.testLibraries.junit
+  testCompile rootProject.ext.testLibraries.mockito
   androidTestCompile rootProject.ext.testLibraries.espresso
 
   debugCompile rootProject.ext.libSquareup.leakcanary
@@ -64,6 +66,8 @@ dependencies {
   compile rootProject.ext.libSquareup.retrofit2
   compile rootProject.ext.libSquareup.gsonConverter4Retrofit2
   compile rootProject.ext.libSquareup.rxjavaAdapter4Retrofit2
+
+  compile rootProject.ext.libTbruyelle.rxPermissions
 
   compile 'com.github.lzyzsd:jsbridge:1.0.4'
   compile 'com.devbrackets.android:exomedia:2.5.6'

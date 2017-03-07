@@ -17,6 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.github.jupittar.commlib.custom.AutoScrollPager;
 import com.github.jupittar.commlib.custom.LoadingImageView;
 import com.github.jupittar.commlib.custom.recyclerview.EndlessScrollListener;
@@ -28,7 +29,7 @@ import com.github.jupittar.vmovier.AppComponent;
 import com.github.jupittar.vmovier.R;
 import com.github.jupittar.vmovier.core.data.entity.Banner;
 import com.github.jupittar.vmovier.core.data.entity.Movie;
-import com.github.jupittar.vmovier.core.feature.home.HomeMvp;
+import com.github.jupittar.vmovier.core.ui.home.HomeContract;
 import com.github.jupittar.vmovier.ui.base.LazyFragment;
 import com.github.jupittar.vmovier.ui.home.adapter.MoviesAdapter;
 
@@ -42,7 +43,7 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 
-public class HomeFragment extends LazyFragment implements HomeMvp.View {
+public class HomeFragment extends LazyFragment implements HomeContract.View {
 
   private static final int TYPE_WEB_PAGE = 1;
   private static final int TYPE_MOVIE = 2;
@@ -63,7 +64,7 @@ public class HomeFragment extends LazyFragment implements HomeMvp.View {
       = DateFormat.getDateInstance(DateFormat.DEFAULT, Locale.ENGLISH);
 
   @Inject
-  HomeMvp.Presenter<HomeMvp.View> mPresenter;
+  HomeContract.Presenter<HomeContract.View> mPresenter;
   @Inject
   OnFragmentInteractionListener mOnFragmentInteractionListener;
 
@@ -176,7 +177,7 @@ public class HomeFragment extends LazyFragment implements HomeMvp.View {
     mPresenter = null;
   }
 
-  //region Implementation for HomeMvp.View
+  //region Implementation for HomeContract.View
   @Override
   public void showBanner(final List<Banner> banners) {
     List<String> imageUrls = new ArrayList<>();
@@ -189,6 +190,7 @@ public class HomeFragment extends LazyFragment implements HomeMvp.View {
       public void displayImage(String imgUrl, ImageView imageView) {
         Glide.with(getActivity())
             .load(imgUrl)
+            .diskCacheStrategy(DiskCacheStrategy.ALL)
             .centerCrop()
             .into(imageView);
       }
@@ -300,7 +302,7 @@ public class HomeFragment extends LazyFragment implements HomeMvp.View {
 
   @Override
   public boolean notEmpty() {
-    return !mMoviesAdapter.isEmpty();
+    return mMoviesAdapter.getItemCountIgnoreHF() != 0;
   }
 
   @Override

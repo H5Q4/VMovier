@@ -13,4 +13,7 @@ public class Constants {
   public static final int CACHE_MAX_STALE_DAYS = 7; // 7 day
   public static final int RETRY_COUNT = 3;  // 3 times
 
+  public static final String CACHE_KEY_LATEST_MOVIES = "latest_movies";
+  public static final String CACHE_KEY_BANNER = "banner";
+
 }

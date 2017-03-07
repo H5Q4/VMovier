@@ -4,11 +4,14 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
+import com.github.jupittar.commlib.custom.recyclerview.adapter.HFViewAdapter;
+
 public abstract class EndlessScrollListener extends RecyclerView.OnScrollListener {
 
   private int mPreviousTotal = 0; // the total number of items in the dataset after the last loading.
   private int mVisibleThreshold = 3; // the min amount of items to have below current scroll position before loading more.
   private boolean mLoading = true; // true if still waiting for the last set of data to load
+  private RecyclerView.Adapter mAdapter;
 
   @Override
   public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
@@ -17,6 +20,7 @@ public abstract class EndlessScrollListener extends RecyclerView.OnScrollListene
     int firstVisibleItem = 0;
     int visibleItemCount;
     int totalItemCount = 0;
+    mAdapter = recyclerView.getAdapter();
     RecyclerView.LayoutManager layoutManager = recyclerView.getLayoutManager();
     visibleItemCount = layoutManager.getChildCount();
     if (layoutManager instanceof GridLayoutManager) {
@@ -31,7 +35,11 @@ public abstract class EndlessScrollListener extends RecyclerView.OnScrollListene
 
     if (mLoading) {
       if (totalItemCount > mPreviousTotal) {
-        mLoading = false;
+        if (!(mAdapter instanceof HFViewAdapter
+            && ((HFViewAdapter) mAdapter).hasHeader()
+            && totalItemCount == 1)) {
+          mLoading = false;
+        }
         mPreviousTotal = totalItemCount;
       }
     }

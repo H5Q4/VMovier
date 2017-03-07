@@ -29,6 +29,8 @@ sourceSets {
 
 dependencies {
   compile fileTree(dir: 'libs', include: ['*.jar'])
+  testCompile rootProject.ext.testLibraries.junit
+  testCompile rootProject.ext.testLibraries.mockito
 
   compile rootProject.ext.libReactiveX.rxjava
 

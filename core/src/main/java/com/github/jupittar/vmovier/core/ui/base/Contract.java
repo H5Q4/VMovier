@@ -1,8 +1,8 @@
-package com.github.jupittar.vmovier.core.feature.base;
+package com.github.jupittar.vmovier.core.ui.base;
 
 import rx.Subscription;
 
-public interface Mvp {
+public interface Contract {
 
   interface Interactor {}
 

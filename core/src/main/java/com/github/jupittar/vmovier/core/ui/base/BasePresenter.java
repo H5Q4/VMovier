@@ -1,9 +1,9 @@
-package com.github.jupittar.vmovier.core.feature.base;
+package com.github.jupittar.vmovier.core.ui.base;
 
 import rx.Subscription;
 import rx.subscriptions.CompositeSubscription;
 
-public class BasePresenter<V extends Mvp.View> implements Mvp.Presenter<V> {
+public class BasePresenter<V extends Contract.View> implements Contract.Presenter<V> {
 
   private V mView;
   private CompositeSubscription mCompositeSubscription;

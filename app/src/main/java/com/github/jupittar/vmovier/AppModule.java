@@ -3,13 +3,6 @@ package com.github.jupittar.vmovier;
 import android.content.Context;
 import android.content.res.Resources;
 
-import com.github.jupittar.vmovier.core.helper.LoggerHelper;
-import com.github.jupittar.vmovier.core.helper.NetworkHelper;
-import com.github.jupittar.vmovier.core.helper.SchedulerProvider;
-import com.github.jupittar.vmovier.helper.AppLoggerHelper;
-import com.github.jupittar.vmovier.helper.AppNetworkHelper;
-import com.github.jupittar.vmovier.helper.AppSchedulerProvider;
-
 import java.io.File;
 
 import javax.inject.Named;

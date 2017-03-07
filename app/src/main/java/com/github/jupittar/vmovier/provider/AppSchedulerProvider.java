@@ -1,6 +1,6 @@
-package com.github.jupittar.vmovier.helper;
+package com.github.jupittar.vmovier.provider;
 
-import com.github.jupittar.vmovier.core.helper.SchedulerProvider;
+import com.github.jupittar.vmovier.core.provider.SchedulerProvider;
 
 import rx.Scheduler;
 import rx.android.schedulers.AndroidSchedulers;

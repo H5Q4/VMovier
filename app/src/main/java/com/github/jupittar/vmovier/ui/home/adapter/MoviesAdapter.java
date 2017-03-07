@@ -5,6 +5,7 @@ import android.support.annotation.LayoutRes;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.github.jupittar.commlib.custom.AspectRatioImageView;
 import com.github.jupittar.commlib.custom.recyclerview.CommonViewHolder;
 import com.github.jupittar.commlib.custom.recyclerview.adapter.SectionedViewAdapter;
@@ -35,6 +36,7 @@ public class MoviesAdapter extends SectionedViewAdapter<SectionedItem<Movie>> {
     coverImageView.setAspectRatio(AspectRatioImageView.PHI);
     Glide.with(coverImageView.getContext())
         .load(movie.getImage())
+        .diskCacheStrategy(DiskCacheStrategy.ALL)
         .centerCrop()
         .into(coverImageView);
     titleTextView.setText(movie.getTitle());

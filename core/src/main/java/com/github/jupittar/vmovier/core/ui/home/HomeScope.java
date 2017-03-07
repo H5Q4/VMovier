@@ -1,4 +1,4 @@
-package com.github.jupittar.vmovier.core.feature.home;
+package com.github.jupittar.vmovier.core.ui.home;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

@@ -2,8 +2,8 @@ package com.github.jupittar.vmovier.ui.home;
 
 import android.content.Context;
 
-import com.github.jupittar.vmovier.core.feature.home.HomeModule;
-import com.github.jupittar.vmovier.core.feature.home.HomeScope;
+import com.github.jupittar.vmovier.core.ui.home.HomeModule;
+import com.github.jupittar.vmovier.core.ui.home.HomeScope;
 
 import dagger.Module;
 import dagger.Provides;

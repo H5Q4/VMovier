@@ -1,17 +1,17 @@
-package com.github.jupittar.vmovier.core.feature.home;
+package com.github.jupittar.vmovier.core.ui.home;
 
 import com.github.jupittar.vmovier.core.data.entity.Banner;
 import com.github.jupittar.vmovier.core.data.entity.Movie;
-import com.github.jupittar.vmovier.core.feature.base.BasePresenter;
-import com.github.jupittar.vmovier.core.feature.base.Mvp;
+import com.github.jupittar.vmovier.core.ui.base.BasePresenter;
+import com.github.jupittar.vmovier.core.ui.base.Contract;
 
 import java.util.List;
 
 import rx.Observable;
 
-public interface HomeMvp {
+public interface HomeContract {
 
-  interface View extends Mvp.View {
+  interface View extends Contract.View {
     void showBanner(List<Banner> banners);
     void showLatestMovies(List<Movie> movies);
     void showErrorLayout();
@@ -22,7 +22,7 @@ public interface HomeMvp {
     boolean notEmpty();
   }
 
-  interface Interactor extends Mvp.Interactor {
+  interface Interactor extends Contract.Interactor {
     Observable<List<Movie>> loadLatestMovies(int page);
     Observable<List<Movie>> loadCachedLatestMovies();
     Observable<List<Banner>> loadBanner();

@@ -1,8 +1,10 @@
 package com.github.jupittar.vmovier.ui.main;
 
+import android.Manifest;
 import android.graphics.Typeface;
 import android.os.Handler;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
@@ -29,11 +31,13 @@ import com.github.jupittar.vmovier.ui.base.BaseActivity;
 import com.github.jupittar.vmovier.ui.channel.ChannelFragment;
 import com.github.jupittar.vmovier.ui.home.HomeFragment;
 import com.github.jupittar.vmovier.ui.series.SeriesFragment;
+import com.tbruyelle.rxpermissions.RxPermissions;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import rx.functions.Action1;
 
 public class MainActivity extends BaseActivity
     implements NavigationView.OnNavigationItemSelectedListener,
@@ -59,6 +63,17 @@ public class MainActivity extends BaseActivity
     setUpToolbar();
     setUpDrawer();
     setUpViewPager();
+    new RxPermissions(this)
+        .request(Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE)
+        .subscribe(new Action1<Boolean>() {
+          @Override
+          public void call(Boolean granted) {
+            if (!granted) {
+              ToastUtils.showLong(MainActivity.this, "No permissions to persist data");
+            }
+          }
+        });
   }
 
   @Override

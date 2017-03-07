@@ -2,9 +2,9 @@ package com.github.jupittar.vmovier;
 
 import android.app.Application;
 
-import com.github.jupittar.vmovier.core.data.remote.NetworkModule;
+import com.github.jupittar.vmovier.core.data.remote.ApiModule;
 import com.github.jupittar.vmovier.data.DataModule;
-import com.github.jupittar.vmovier.helper.HelperModule;
+import com.github.jupittar.vmovier.provider.ProviderModule;
 import com.orhanobut.logger.LogLevel;
 import com.orhanobut.logger.Logger;
 
@@ -39,8 +39,8 @@ public class VMovierApplication extends Application {
     return DaggerAppComponent
         .builder()
         .appModule(new AppModule(this))
-        .helperModule(new HelperModule())
-        .networkModule(new NetworkModule())
+        .providerModule(new ProviderModule())
+        .apiModule(new ApiModule())
         .dataModule(new DataModule())
         .build();
   }

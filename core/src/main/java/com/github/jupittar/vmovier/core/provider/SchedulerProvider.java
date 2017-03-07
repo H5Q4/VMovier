@@ -1,4 +1,4 @@
-package com.github.jupittar.vmovier.core.helper;
+package com.github.jupittar.vmovier.core.provider;
 
 import rx.Scheduler;
 

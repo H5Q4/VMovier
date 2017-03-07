@@ -1,16 +1,16 @@
-package com.github.jupittar.vmovier.helper;
+package com.github.jupittar.vmovier.provider;
 
 import android.content.Context;
 
-import com.github.jupittar.vmovier.core.helper.LoggerHelper;
+import com.github.jupittar.vmovier.core.provider.LoggerProvider;
 import com.orhanobut.logger.Logger;
 
 @SuppressWarnings("unused")
-public class AppLoggerHelper implements LoggerHelper {
+public class AppLoggerProvider implements LoggerProvider {
 
   private Context mContext;
 
-  public AppLoggerHelper(Context context) {
+  public AppLoggerProvider(Context context) {
     mContext = context;
   }
 

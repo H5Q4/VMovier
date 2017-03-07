@@ -1,7 +1,7 @@
 package com.github.jupittar.vmovier.core.data.remote.interceptor;
 
 
-import com.github.jupittar.vmovier.core.helper.LoggerHelper;
+import com.github.jupittar.vmovier.core.provider.LoggerProvider;
 
 import java.io.IOException;
 import java.util.Locale;
@@ -14,25 +14,25 @@ import okio.Buffer;
 
 public class HttpLoggingInterceptor implements Interceptor {
 
-  private LoggerHelper mLoggerHelper;
+  private LoggerProvider mLoggerProvider;
 
-  public HttpLoggingInterceptor(LoggerHelper loggerHelper) {
-    mLoggerHelper = loggerHelper;
+  public HttpLoggingInterceptor(LoggerProvider loggerProvider) {
+    mLoggerProvider = loggerProvider;
   }
 
   @Override
   public Response intercept(Chain chain) throws IOException {
-    mLoggerHelper.t(0);
+    mLoggerProvider.t(0);
     Request request = chain.request();
 
     long t1 = System.nanoTime();
 
     if (request.method().equals("GET")) {
-      mLoggerHelper.i(String.format("%s: %s%n%s%n",
+      mLoggerProvider.i(String.format("%s: %s%n%s%n",
           request.method(),
           request.url(), request.headers()));
     } else {
-      mLoggerHelper.i(String.format("%s: %s%n%s%nBODY: %s",
+      mLoggerProvider.i(String.format("%s: %s%n%s%nBODY: %s",
           request.method(),
           request.url(), request.headers(),
           stringifyRequestBody(request)
@@ -42,12 +42,12 @@ public class HttpLoggingInterceptor implements Interceptor {
     Response response = chain.proceed(request);
 
     long t2 = System.nanoTime();
-    mLoggerHelper.i(String.format(Locale.CHINA, "Received response from %s in %.1fms%n%s",
+    mLoggerProvider.i(String.format(Locale.CHINA, "Received response from %s in %.1fms%n%s",
         response.request().url(), (t2 - t1) / 1e6d, response.headers()));
 
     ResponseBody responseBody = response.body();
     String responseBodyString = response.body().string();
-    mLoggerHelper.json(responseBodyString);
+    mLoggerProvider.json(responseBodyString);
 
     return response.newBuilder()
         .body(ResponseBody.create(responseBody.contentType(), responseBodyString.getBytes()))

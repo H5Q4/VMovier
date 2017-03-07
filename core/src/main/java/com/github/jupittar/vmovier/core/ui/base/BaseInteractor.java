@@ -1,9 +1,9 @@
-package com.github.jupittar.vmovier.core.feature.base;
+package com.github.jupittar.vmovier.core.ui.base;
 
 import com.github.jupittar.vmovier.core.data.remote.VMovierApi;
-import com.github.jupittar.vmovier.core.helper.SchedulerProvider;
+import com.github.jupittar.vmovier.core.provider.SchedulerProvider;
 
-public class BaseInteractor implements Mvp.Interactor {
+public class BaseInteractor implements Contract.Interactor {
 
   protected VMovierApi mVMovierApi;
   protected SchedulerProvider mSchedulerProvider;

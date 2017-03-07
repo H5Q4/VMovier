@@ -6,8 +6,8 @@ import com.github.jupittar.vmovier.core.data.remote.interceptor.HttpLoggingInter
 import com.github.jupittar.vmovier.core.data.remote.interceptor.HttpOfflineCacheInterceptor;
 import com.github.jupittar.vmovier.core.data.remote.interceptor.RetryInterceptor;
 import com.github.jupittar.vmovier.core.util.Constants;
-import com.github.jupittar.vmovier.core.helper.LoggerHelper;
-import com.github.jupittar.vmovier.core.helper.NetworkHelper;
+import com.github.jupittar.vmovier.core.provider.LoggerProvider;
+import com.github.jupittar.vmovier.core.provider.NetworkStateProvider;
 import com.google.gson.Gson;
 
 import java.io.File;
@@ -25,7 +25,7 @@ import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 @Module
-public class NetworkModule {
+public class ApiModule {
 
   @Provides
   @Singleton
@@ -112,8 +112,8 @@ public class NetworkModule {
 
   @Provides
   @Singleton
-  public HttpLoggingInterceptor provideHttpLoggingInterceptor(LoggerHelper loggerHelper) {
-    return new HttpLoggingInterceptor(loggerHelper);
+  public HttpLoggingInterceptor provideHttpLoggingInterceptor(LoggerProvider loggerProvider) {
+    return new HttpLoggingInterceptor(loggerProvider);
   }
 
   @Provides
@@ -131,9 +131,9 @@ public class NetworkModule {
   @Provides
   @Singleton
   public HttpOfflineCacheInterceptor provideOfflineCacheInterceptor(
-      NetworkHelper networkHelper
+      NetworkStateProvider networkStateProvider
   ) {
-    return new HttpOfflineCacheInterceptor(networkHelper);
+    return new HttpOfflineCacheInterceptor(networkStateProvider);
   }
 
   @Provides

@@ -6,14 +6,12 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.github.jupittar.vmovier.core.data.local.CacheManager;
 import com.github.jupittar.vmovier.core.data.local.UserManager;
-import com.github.jupittar.vmovier.util.SecretUtils;
 
 import javax.inject.Inject;
 
 public class AppCacheManager implements CacheManager {
 
   private static final String GLOBAL_USER = "global_user";
-  private static final String DES_KEY = "*/~!\u2014\u2014+\u2026\u2026%#\uffe5";
 
   AppSQLiteOpenHelper mAppSQLiteOpenHelper;
   UserManager mUserManager;
@@ -44,13 +42,11 @@ public class AppCacheManager implements CacheManager {
       try {
         res = query.getString(query.getColumnIndex("value"));
         query.moveToNext();
-        res = SecretUtils.decodeDes(DES_KEY, res);
       } catch (Exception e) {
         e.printStackTrace();
-      } finally {
-        query.close();
       }
     }
+    query.close();
     return res;
   }
 
@@ -72,11 +68,7 @@ public class AppCacheManager implements CacheManager {
       ContentValues values = new ContentValues();
       values.put("account", uid);
       values.put("key", key);
-      try {
-        values.put("value", SecretUtils.encodeDes(DES_KEY, value));
-      } catch (Exception e) {
-        e.printStackTrace();
-      }
+      values.put("value", value);
       db.insert("table_cache", null, values);
     }
   }
