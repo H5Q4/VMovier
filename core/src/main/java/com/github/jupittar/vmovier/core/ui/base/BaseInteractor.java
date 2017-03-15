@@ -1,16 +1,16 @@
 package com.github.jupittar.vmovier.core.ui.base;
 
 import com.github.jupittar.vmovier.core.data.remote.VMovierApi;
-import com.github.jupittar.vmovier.core.provider.SchedulerProvider;
+import com.github.jupittar.vmovier.core.helper.SchedulerHelper;
 
 public class BaseInteractor implements Contract.Interactor {
 
   protected VMovierApi mVMovierApi;
-  protected SchedulerProvider mSchedulerProvider;
+  protected SchedulerHelper mSchedulerHelper;
 
-  public BaseInteractor(VMovierApi vMovierApi, SchedulerProvider schedulerProvider) {
+  public BaseInteractor(VMovierApi vMovierApi, SchedulerHelper schedulerHelper) {
     mVMovierApi = vMovierApi;
-    mSchedulerProvider = schedulerProvider;
+    mSchedulerHelper = schedulerHelper;
   }
 
 }

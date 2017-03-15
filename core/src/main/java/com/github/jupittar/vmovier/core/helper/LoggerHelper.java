@@ -1,6 +1,6 @@
-package com.github.jupittar.vmovier.core.provider;
+package com.github.jupittar.vmovier.core.helper;
 
-public interface LoggerProvider {
+public interface LoggerHelper {
 
   void t(int methodCount);
 

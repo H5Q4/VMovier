@@ -3,7 +3,7 @@ package com.github.jupittar.vmovier.core.ui.home;
 import com.github.jupittar.vmovier.core.data.entity.Banner;
 import com.github.jupittar.vmovier.core.data.entity.Movie;
 import com.github.jupittar.vmovier.core.data.local.CacheManager;
-import com.github.jupittar.vmovier.core.provider.SchedulerProvider;
+import com.github.jupittar.vmovier.core.helper.SchedulerHelper;
 import com.google.gson.Gson;
 
 import java.net.SocketException;
@@ -25,11 +25,11 @@ public class HomePresenter extends HomeContract.Presenter<HomeContract.View> {
   HomeContract.Interactor mInteractor;
   @Inject
   CacheManager mCacheManager;
-  SchedulerProvider mSchedulerProvider;
+  SchedulerHelper mSchedulerHelper;
 
   @Inject
-  public HomePresenter(SchedulerProvider schedulerProvider) {
-    mSchedulerProvider = schedulerProvider;
+  public HomePresenter(SchedulerHelper schedulerHelper) {
+    mSchedulerHelper = schedulerHelper;
   }
 
   @Override
@@ -45,8 +45,8 @@ public class HomePresenter extends HomeContract.Presenter<HomeContract.View> {
     Observable<List<Movie>> listObservable
         = page == 1 ?
         Observable.concatDelayError(moviesFromCache, moviesFromApi)
-            .observeOn(mSchedulerProvider.mainThread(), true)
-        : moviesFromApi.observeOn(mSchedulerProvider.mainThread());
+            .observeOn(mSchedulerHelper.mainThread(), true)
+        : moviesFromApi.observeOn(mSchedulerHelper.mainThread());
     Subscription subscription = listObservable
         .subscribe(movies -> {
           getMvpView().hideLoading();
@@ -80,7 +80,7 @@ public class HomePresenter extends HomeContract.Presenter<HomeContract.View> {
         });
     Subscription subscription
         = Observable.concatDelayError(bannerFromCache, bannerFromApi)
-        .observeOn(mSchedulerProvider.mainThread(), true)
+        .observeOn(mSchedulerHelper.mainThread(), true)
         .subscribe(banners -> {
               if (banners != null) {
                 getMvpView().showBanner(banners);

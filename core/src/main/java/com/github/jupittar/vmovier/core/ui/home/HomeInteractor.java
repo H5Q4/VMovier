@@ -5,7 +5,7 @@ import com.github.jupittar.vmovier.core.data.entity.Movie;
 import com.github.jupittar.vmovier.core.data.local.CacheManager;
 import com.github.jupittar.vmovier.core.data.remote.func.ExtractDataFunc;
 import com.github.jupittar.vmovier.core.data.remote.VMovierApi;
-import com.github.jupittar.vmovier.core.provider.SchedulerProvider;
+import com.github.jupittar.vmovier.core.helper.SchedulerHelper;
 import com.github.jupittar.vmovier.core.util.StringUtils;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -24,22 +24,22 @@ public class HomeInteractor implements HomeContract.Interactor {
 
   private VMovierApi mVMovierApi;
   private CacheManager mCacheManager;
-  private SchedulerProvider mSchedulerProvider;
+  private SchedulerHelper mSchedulerHelper;
 
   @Inject
   public HomeInteractor(VMovierApi VMovierApi,
                         CacheManager cacheManager,
-                        SchedulerProvider schedulerProvider) {
+                        SchedulerHelper schedulerHelper) {
     mVMovierApi = VMovierApi;
     mCacheManager = cacheManager;
-    mSchedulerProvider = schedulerProvider;
+    mSchedulerHelper = schedulerHelper;
   }
 
   @Override
   public Observable<List<Movie>> loadLatestMovies(int page) {
     return mVMovierApi.getMoviesByTab(page, 20, "latest")
         .map(new ExtractDataFunc<>())
-        .subscribeOn(mSchedulerProvider.backgroundThread());
+        .subscribeOn(mSchedulerHelper.backgroundThread());
   }
 
   @Override
@@ -51,13 +51,13 @@ public class HomeInteractor implements HomeContract.Interactor {
       }
       return new Gson().fromJson(s, new TypeToken<List<Movie>>() {
       }.getType());
-    }).subscribeOn(mSchedulerProvider.backgroundThread());
+    }).subscribeOn(mSchedulerHelper.backgroundThread());
   }
 
   @Override
   public Observable<List<Banner>> loadBanner() {
     return mVMovierApi.getBanner()
-        .subscribeOn(mSchedulerProvider.backgroundThread())
+        .subscribeOn(mSchedulerHelper.backgroundThread())
         .map(new ExtractDataFunc<>());
   }
 
@@ -70,7 +70,7 @@ public class HomeInteractor implements HomeContract.Interactor {
       }
       return new Gson().fromJson(s, new TypeToken<List<Banner>>() {
       }.getType());
-    }).subscribeOn(mSchedulerProvider.backgroundThread());
+    }).subscribeOn(mSchedulerHelper.backgroundThread());
   }
 
 }

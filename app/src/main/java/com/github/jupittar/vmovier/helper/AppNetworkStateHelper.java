@@ -1,15 +1,15 @@
-package com.github.jupittar.vmovier.provider;
+package com.github.jupittar.vmovier.helper;
 
 import android.content.Context;
 
 import com.github.jupittar.commlib.util.NetworkUtils;
-import com.github.jupittar.vmovier.core.provider.NetworkStateProvider;
+import com.github.jupittar.vmovier.core.helper.NetworkStateHelper;
 
-public class AppNetworkStateProvider implements NetworkStateProvider {
+public class AppNetworkStateHelper implements NetworkStateHelper {
 
   private Context mContext;
 
-  public AppNetworkStateProvider(Context context) {
+  public AppNetworkStateHelper(Context context) {
     mContext = context;
   }
 

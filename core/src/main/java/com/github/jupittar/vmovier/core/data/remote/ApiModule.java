@@ -6,8 +6,8 @@ import com.github.jupittar.vmovier.core.data.remote.interceptor.HttpLoggingInter
 import com.github.jupittar.vmovier.core.data.remote.interceptor.HttpOfflineCacheInterceptor;
 import com.github.jupittar.vmovier.core.data.remote.interceptor.RetryInterceptor;
 import com.github.jupittar.vmovier.core.util.Constants;
-import com.github.jupittar.vmovier.core.provider.LoggerProvider;
-import com.github.jupittar.vmovier.core.provider.NetworkStateProvider;
+import com.github.jupittar.vmovier.core.helper.LoggerHelper;
+import com.github.jupittar.vmovier.core.helper.NetworkStateHelper;
 import com.google.gson.Gson;
 
 import java.io.File;
@@ -112,8 +112,8 @@ public class ApiModule {
 
   @Provides
   @Singleton
-  public HttpLoggingInterceptor provideHttpLoggingInterceptor(LoggerProvider loggerProvider) {
-    return new HttpLoggingInterceptor(loggerProvider);
+  public HttpLoggingInterceptor provideHttpLoggingInterceptor(LoggerHelper loggerHelper) {
+    return new HttpLoggingInterceptor(loggerHelper);
   }
 
   @Provides
@@ -131,9 +131,9 @@ public class ApiModule {
   @Provides
   @Singleton
   public HttpOfflineCacheInterceptor provideOfflineCacheInterceptor(
-      NetworkStateProvider networkStateProvider
+      NetworkStateHelper networkStateHelper
   ) {
-    return new HttpOfflineCacheInterceptor(networkStateProvider);
+    return new HttpOfflineCacheInterceptor(networkStateHelper);
   }
 
   @Provides

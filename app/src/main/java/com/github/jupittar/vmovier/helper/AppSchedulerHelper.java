@@ -1,12 +1,12 @@
-package com.github.jupittar.vmovier.provider;
+package com.github.jupittar.vmovier.helper;
 
-import com.github.jupittar.vmovier.core.provider.SchedulerProvider;
+import com.github.jupittar.vmovier.core.helper.SchedulerHelper;
 
 import rx.Scheduler;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
-public class AppSchedulerProvider implements SchedulerProvider {
+public class AppSchedulerHelper implements SchedulerHelper {
 
   @Override
   public Scheduler mainThread() {

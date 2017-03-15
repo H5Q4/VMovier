@@ -4,7 +4,7 @@ import android.app.Application;
 
 import com.github.jupittar.vmovier.core.data.remote.ApiModule;
 import com.github.jupittar.vmovier.data.DataModule;
-import com.github.jupittar.vmovier.provider.ProviderModule;
+import com.github.jupittar.vmovier.helper.HelperModule;
 import com.orhanobut.logger.LogLevel;
 import com.orhanobut.logger.Logger;
 
@@ -39,7 +39,7 @@ public class VMovierApplication extends Application {
     return DaggerAppComponent
         .builder()
         .appModule(new AppModule(this))
-        .providerModule(new ProviderModule())
+        .helperModule(new HelperModule())
         .apiModule(new ApiModule())
         .dataModule(new DataModule())
         .build();
